@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--banner-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner-todo">
+                <div class="banner-text-todo">
+                    <h1>TODO</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST" class="p-3 shadow">
+               {% csrf_token %}
+                <div class="form-group">
+                     <input type="text" name="task" placeholder="Task Name" class="form-control">
+                </div>
+                <div class="form-group">
+                     <input type="text" name="priority" placeholder="Enter Priority" class="form-control">
+                </div>
+                <div class="form-group">
+                     <input type="date" name="date" placeholder="Enter Date" class="form-control">
+                </div>
+                     <input type="submit" class="btn btn-success">
+           </form>
+        </div>
+<!--        nxt col md 6      -->
+        <div class="col-md-6">
+            <h4>Task To be Completed</h4>
+
+            <div class="shadow card">
+                <div class="card-body">
+                    <h5 class="card-title">{{task.name}}</h5>
+                    <p><b>{{task.priority}}</b><br>
+                     <b>{{task.date}}</b></p>
+                    <a class="btn btn-danger" href="{% url 'delete' task.id %}">Done</a>
+                    <a class="btn btn-success" href="{% url 'cbvupdate' task.id %}" >Update</a>
+                </div>
+            </div>
+            <br>
+
+        </div>
+<!---------------->
+    </div>
+</div>
+{% endblock %}
